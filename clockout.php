@@ -73,26 +73,63 @@
                 //If User E-mail is found in the employee table, then proceed to check if User has already Signed Out
                 if ($result->num_rows > 0) {
                     $emp_id = $fetch['emp_id'];
+                    // Check if User Clock In for that Day
+                    $sql3 = "SELECT clock_in_time FROM attendance WHERE emp_id ='$emp_id' AND attendance_date='$clockout_date'";
+                    $result3 = $conn->query($sql3);	
+                    $fetch3 = mysqli_fetch_array($result3);
+                    
+                    if ($result3->num_rows > 0) {
+                        $clockin_time = $fetch['clock_in_time'];
+                        // Check if User has already Clock Out
+                        $sql2 = "SELECT clock_out_time FROM attendance WHERE emp_id ='$emp_id' AND attendance_date='$clockout_date' AND clock_out_time !='$default_clockout' ";
+                        $result2 = $conn->query($sql2);	
+                        $fetch2 = mysqli_fetch_array($result2);
+
+                        if ($result2->num_rows > 0) {
+                            echo "<script>alert('You Already Sign Out, Please Check Back Tomorrow to Sign In')</script>";
+                        }
+                    
+                        // If User has not Signed Out, Sign uSER Out for the day
+                        else{
+                            $sql = "UPDATE attendance SET clock_out_time = '$clockout_time' , clock_out_reason ='$clockout_reason' WHERE emp_id = '$emp_id' AND attendance_date = '$clockout_date'";
+                            if (mysqli_query($conn, $sql)) {
+                                 echo "<script>location.replace('clock_out_success_msg.php');</script>";
+                            } 
+                            else {
+                                 echo "<script>alert('Error Clocking Employee Out') </script>" . $sql . "<br>" . mysqli_error($conn);
+                            }
+                         }
+
+                    }else{
+                        echo "<script>alert('You Did Not Sign in Today, You will be redirected to Clock In First')</script>";
+                        echo "<script>location.replace('clockin.php');</script>";
+                    }
+                        
 
                     // Check if User has already Clock Out
-                    $sql2 = "SELECT * FROM attendance WHERE emp_id ='$emp_id' AND attendance_date='$clockout_date' AND clock_out_time !='$default_clockout' ";
-                    $result2 = $conn->query($sql2);	
-                    $fetch2 = mysqli_fetch_array($result2);
+                    // $sql2 = "SELECT * FROM attendance WHERE emp_id ='$emp_id' AND attendance_date='$clockout_date' AND clock_out_time !='$default_clockout' ";
+                    // $result2 = $conn->query($sql2);	
+                    // $fetch2 = mysqli_fetch_array($result2);
+
+                    // $sql3 = "SELECT clock_in_time FROM attendance WHERE emp_id ='$emp_id' AND attendance_date='$clockout_date'";
+                    // $result3 = $conn->query($sql3);	
+                    // $fetch3 = mysqli_fetch_array($result3);
 
                     //If User has already Sign Out Display Error Message
-                    if ($result2->num_rows > 0) {
-                        echo "<script>alert('You Already Sign Out, Please Check Back Later to Sign In')</script>";
-                    }
+                    // if ($result2->num_rows > 0) {
+                    //     echo "<script>alert('You Already Sign Out, Please Check Back Later to Sign In')</script>";
+                    // }
+                    // 
                         // If User has not Signed Out, Sign uSER Out for the dau
-                    else{
-                        $sql = "UPDATE attendance SET clock_out_time = '$clockout_time' , clock_out_reason ='$clockout_reason' WHERE emp_id = '$emp_id' AND attendance_date = '$clockout_date'";
-                        if (mysqli_query($conn, $sql)) {
-                            echo "<script>location.replace('clock_out_success_msg.php');</script>";
-                        } 
-                        else {
-                            echo "<script>alert('Error Clocking Employee Out') </script>" . $sql . "<br>" . mysqli_error($conn);
-                        }
-                    }
+                    // else{
+                    //     $sql = "UPDATE attendance SET clock_out_time = '$clockout_time' , clock_out_reason ='$clockout_reason' WHERE emp_id = '$emp_id' AND attendance_date = '$clockout_date'";
+                    //     if (mysqli_query($conn, $sql)) {
+                    //         echo "<script>location.replace('clock_out_success_msg.php');</script>";
+                    //     } 
+                    //     else {
+                    //         echo "<script>alert('Error Clocking Employee Out') </script>" . $sql . "<br>" . mysqli_error($conn);
+                    //     }
+                    // }
                 }
 
                 // Error Message to be Displayed when User is not found
