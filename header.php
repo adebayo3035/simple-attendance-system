@@ -25,10 +25,25 @@
             <li>
                 <a href="clockout.php">Clock Out</a>
             </li>
+
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn">Admin 
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#">Login</a>
+                    </div>
+                </div> 
+            </li>
+
+            <!-- <li>
+                <a href="home.php">Home</a>
+            </li>
                         
             <li>
                 <a href="attendance_record.php">Attendance Record</a>
-            </li>
+            </li> -->
 
         </ul>
 
