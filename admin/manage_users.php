@@ -1,3 +1,10 @@
+<?php
+// session_start();
+// if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
+//     header("Location:login.php");
+//     die();
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,24 +16,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/attendance_record.css">
-    <title> Employee Attendance Record</title>
+    <link rel="stylesheet" href="../css/attendance_record.css">
+    <title> Employee Record</title>
     </head>
 <body>
 
     <?php 
-        include ('header.php'); 
-        include ('config.php');
+        include ('admin-header.php'); 
+        include ('../config.php');
         if (isset($_POST['search'])){
             $emp_id = $_POST['filter_email'];
             // $sql = "SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id WHERE attendance.emp_id = '".$_POST["filter_email"]."'";
 
-            $sql = "SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id WHERE employee_tbl.emp_email = '".$_POST["filter_email"]."'";
+            $sql = "SELECT * FROM employee_tbl  WHERE employee_tbl.emp_email = '".$_POST["filter_email"]."'";
 
             $result = $conn->query($sql) or die($conn->error);
         }
         else{
-            $sql = " SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id ORDER BY attendance_id DESC ";
+            $sql = " SELECT * FROM employee_tbl  ORDER BY emp_id DESC ";
             $result = $conn->query($sql);
 
         }
@@ -34,7 +41,8 @@
 
     ?>
 
-<h2>Employee Attendance Record</h2>
+<h2>Manage Employee Records</h2>
+<a href="../index.php" class="addNewEmployee"> Add New Employee </a>
     <form action="" class="data-list" method="post">
         
         <div class="filter-container" id="filter-container">
@@ -51,10 +59,9 @@
       <th>Last Name</th>
       <th>First Name</th>
       <th>Position</th>
-      <th> Date </th>
-      <th>Clock in Time</th>
-      <th>Clock Out Time</th>
-      <th>Reason for Clocking Out</th>
+      <th> E-mail </th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
 
 
@@ -71,10 +78,9 @@
             <td><?php echo $rows['emp_position'] ?></td>
 
     
-            <td><?php echo $rows['attendance_date'] ?></td>                 
-            <td><?php echo $rows['clock_in_time'] ?></td>
-            <td><?php echo $rows['clock_out_time'] ?></td>
-            <td><?php echo $rows['clock_out_reason'] ?></td>
+            <td><?php echo $rows['emp_email'] ?></td>                 
+            <td><a href="edit.php?id=<?php echo $rows['emp_id']; ?>"><i class="fa fa-pencil" aria-hidden="true" color="red"></i></a></td>
+            <td><a href="delete.php?id=<?php echo $rows['emp_id']; ?>"><i class="fa fa-trash" aria-hidden="true"  color="red"></i></a></td>
         </tr>
 <?php
         }//end while

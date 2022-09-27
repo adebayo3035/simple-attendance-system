@@ -1,3 +1,10 @@
+<?php
+// session_start();
+// if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
+//     header("Location:login.php");
+//     die();
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +43,7 @@
 </head>
 
 <body>
-    <?php include ('header.php');?>
+    <?php include ('admin-header.php');?>
     <h2> Welcome to Plusone Technology Staff Attendance Management System</h2>
 </body>
 

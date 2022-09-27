@@ -10,14 +10,16 @@ body{
 .navbar{
     display: flex;
      /* border: 3px solid red;  */
-    width: 90%;
+    width: 98%;
+    
     margin: auto;
+    margin-bottom: 10px;
 }
 .navlist{
     display: flex;
     justify-content: space-between;
-    /* border: 2px solid red; */
-    width: 70%;
+    /* border: 2px solid red;  */
+    width: 80%;
     list-style-type: none;
     margin: 20px auto;
 }
@@ -51,7 +53,7 @@ body{
   border: none;
   outline: none;
   color: #fff;
-  padding: 5px;
+  /* padding: 5px; */
   background-color: inherit;
   font-family: inherit;
   margin: 0;
@@ -78,6 +80,9 @@ body{
       
       .dropdown-content a:hover {
         background-color: #ddd;
+      }
+      .dropdown:hover{
+          cursor: pointer;
       }
       
       .dropdown:hover .dropdown-content {

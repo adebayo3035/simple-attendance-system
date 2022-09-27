@@ -76,4 +76,12 @@ table {
   tr:nth-child(odd){
       background-color: #000;
       color: #fff;
-    }
+}
+.addNewEmployee{
+    border: 1px solid #f2f2f2;
+    background-color: dodgerblue;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    padding: 5px;
+}

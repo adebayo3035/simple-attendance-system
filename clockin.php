@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
+    header("Location:admin/login.php");
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

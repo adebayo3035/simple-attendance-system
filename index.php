@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
+    header("Location:admin/login.php");
+    die();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,27 +26,25 @@
         <header> CREATE ACCOUNT</header>
             <form method="post" action="index.php"> 
                 <div class="input-group">
-                    <input type="text" name="lastname" placeholder="Last Name">
+                    <input type="text" name="lastname" placeholder="Last Name" required>
                 </div>
                 
                 <div class="input-group">
-                    <input type="text" name="firstname" placeholder="First Name">
+                    <input type="text" name="firstname" placeholder="First Name" required>
                 </div>
 
                  <div class="input-group">
-                    <input type="email" name="email" placeholder="Email Address">
+                    <input type="email" name="email" placeholder="Email Address" required>
                 </div>
                 
                 <div class="input-group">
-                    <input type="text" name="position" placeholder="Your Position">
+                    <input type="text" name="position" placeholder="Your Position" required>
                 </div>
                
 
 
                 <button type="submit" name="register" id="submitBtn">Register</button>
             </form>
-            <aside> Admin Please Login <a href= "clockin.html">Here</a></aside>
-
         
     </section>
     
