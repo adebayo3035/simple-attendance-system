@@ -17,7 +17,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/attendance_record.css">
-    <title> Employee Record</title>
+    <link rel="icon" type="image/x-icon" href="../resources/images/logo-colored.png">
+    <title> Admin Record</title>
 
     <style>
         #password{

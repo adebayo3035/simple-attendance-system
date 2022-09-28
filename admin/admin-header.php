@@ -20,6 +20,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/header.css">
+    <link rel="icon" type="image/x-icon" href="../resources/images/logo-colored.png">
 </head>
 
 <body>

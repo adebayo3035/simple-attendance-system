@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/register.css">
+    <link rel="icon" type="image/x-icon" href="../resources/images/logo-colored.png">
     <title>Admin Registration Form</title>
 </head>
 <body>
