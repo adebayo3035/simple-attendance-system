@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/register.css">
     <link rel="icon" type="image/x-icon" href="resources/images/logo-colored.png">
-    <title>User Registration Form</title>
+    <title>Employee Clock Out</title>
 </head>
 
 <body>
@@ -50,7 +50,7 @@
         </form>
 
     </section>
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script> -->
 
     <!-- pHP SCRIPT TO UPDATE ATENDANCE TABLE -->
 
@@ -127,6 +127,8 @@
         // Close connection
         mysqli_close($conn);
     ?>
+
+    <script src="main.js"> </script>
 </body>
 
 </html>

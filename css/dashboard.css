@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+:root {
+    --blue: #1e90ff;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    max-height: 100vh;
+    /* background-color: var(--blue); */
+    color: var(--white);
+    background-color: #B2BEB5;
+    /* background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(https://images.unsplash.com/photo-1657405826726-ac52271d3bb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=967&q=80); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    /* border: 2px solid red; */
+    color: #000;
+    /* padding: 20px; */
+    position: static;
+    /* margin: 3% auto; */
+    height: 100vh
+}
+
+.container .navigation {
+    width: 20%;
+    /* border: 2px solid red; */
+    background-color: #00003B;
+    padding: 10px;
+}
+
+.container .navigation .header {
+    background-color: #50508B;
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+.container .navigation ul {
+    list-style-type: none;
+    margin-top: 20px;
+}
+
+.container .navigation ul li {
+    padding: 10px;
+    /* border: 2px solid #fff; */
+    margin: 10px 0px;
+}
+
+.container .navigation ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 70px 10px 10px;
+
+}
+
+.container .navigation ul li a i {
+    padding: 0px 5px;
+}
+
+.container .navigation ul li a:hover {
+    color: #00003B;
+    background-color: #fff;
+    border-radius: 20px 0px 0px 20px;
+}
+
+/* Dashboard Main section */
+.container .main {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    margin: 20px auto;
+    /* border: 2px solid blue; */
+}
+
+.container .main .count {
+    display: flex;
+    background-color: #fff;
+    justify-content: space-between;
+    padding: 20px 10px;
+}
+
+.container .main .count .count-1 {
+    color: #fff;
+    text-align: center;
+    margin: 5px;
+    flex: 1;
+}
+
+.container .main .count .count-1 p {
+    padding: 20px 10px;
+}
+
+.container .main .count .count-1 .number {
+    font-weight: 900;
+    font-size: 22px;
+}
+
+.container .main .count .red {
+    background-color: red;
+}
+
+.container .main .count .orange {
+    background-color: orange;
+}
+
+.container .main .count .green {
+    background-color: green;
+}
+
+.container .main .count .purple {
+    background-color: purple;
+}
+
+.container .main .admin{
+    width: 100%;
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px;
+}
+.container .main .admin .dropdown {
+    position: relative;
+}
+
+/* .dropdown{
+    float: left;
+    overflow: hidden;
+} */
+.container .main .admin .dropdown .dropbtn {
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: #000;
+    margin: 0;
+    padding: 5px;
+    background-color: transparent;
+}
+
+.container .main .admin .dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    color: #000;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.container .main .admin .dropdown .dropdown-content a {
+    float: none;
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    background-color: #00003B;
+}
+
+.container .main .admin .dropdown:hover {
+    cursor: pointer;
+}
+
+.container .main .admin .dropdown:hover .dropdown-content {
+    display: block;
+    
+}

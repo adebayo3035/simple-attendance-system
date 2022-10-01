@@ -45,6 +45,9 @@ else{
             <li>
                 <a href="attendance_record.php">Attendance</a>
             </li>
+            <li>
+                <a href="dashboard.html">DASHBOARD</a>
+            </li>
 
             <li>
                 <div class="dropdown">
