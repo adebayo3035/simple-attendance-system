@@ -40,7 +40,7 @@
 						include('../config.php');
 						if(isset($_POST['login'])){
                             $username = mysqli_real_escape_string($conn, $_POST['username']);
-                            $password = md5(mysqli_real_escape_string($conn, $_POST['password']));
+                            $password = (mysqli_real_escape_string($conn, $_POST['password']));
 
 						$sql = "SELECT * FROM admin_tbl WHERE admin_username='$username' AND admin_password = '$password'  ";
                         $result = $conn->query($sql) or die($conn->error);
@@ -48,6 +48,7 @@
              		    if ($result->num_rows > 0) {
                             $_SESSION["admin_email"] = $fetch['admin_email'];
                             $_SESSION['userLogin'] = "Loggedin";
+                            $_SESSION["login_time_stamp"] = time();
                               echo "<script>alert('Admin Logged in Successfully!');</script>";
                               echo "<script>location.replace('admin-index.php');</script>";
 			             }

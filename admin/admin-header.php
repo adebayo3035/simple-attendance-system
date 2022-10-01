@@ -1,8 +1,16 @@
 <?php
 session_start();
 if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
-    header("Location:login.php");
+    header("Location:admin/login.php");
     die();
+}
+else{
+    if(time()-$_SESSION["login_time_stamp"] >12000) 
+    {
+        session_unset();
+        session_destroy();
+        header("Location:login.php");
+    }
 }
 ?>
 
@@ -20,7 +28,7 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/header.css">
-    <link rel="icon" type="image/x-icon" href="../resources/images/logo-colored.png">
+    
 </head>
 
 <body>
@@ -36,12 +44,6 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
             
             <li>
                 <a href="attendance_record.php">Attendance</a>
-            </li>
-            <li>
-                <a href="../clockin.php">Clock In</a>
-            </li>
-            <li>
-                <a href="../clockout.php">Clock Out</a>
             </li>
 
             <li>

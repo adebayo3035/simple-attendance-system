@@ -13,15 +13,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/header.css">
 </head>
+<style>
+    .nav-login {
+        display: flex;
+        justify-content: flex-end;
+        /* border: 2px solid #fff; */
+    }
+</style>
 
 <body>
     <nav class="navbar">
-        <a href="admin/admin-index.php"> <img src="resources/images/logo-white.png" alt="logo" class="nav-logo"></a>
-        <!-- <ul class="navlist">
+        <a href="index.php"> <img src="resources/images/logo-white.png" alt="logo" class="nav-logo"></a>
+
+       
+        <ul class="navlist nav-login">
             <li>
-                <a href="clockin.php">Clock In</a>
+                 <a href="admin/login.php"> Admin Login </a>
             </li>
-            
+            </ul>
+            <!-- 
             <li>
                 <a href="clockout.php">Clock Out</a>
             </li>

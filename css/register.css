@@ -46,7 +46,7 @@ body{
 .container form .input-group{
     display: flex;
     margin: 10px;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     width: 80%;
@@ -58,6 +58,16 @@ body{
     border: 1px #ccc solid;
     outline:none;
     width: 100%;
+}
+#password{
+    position: relative;
+}
+#togglePassword{
+    position: absolute;
+    display: inline-block;
+    margin-left: 40%;
+    z-index: 1;
+    cursor: pointer;
 }
 .container form .input-group button{
     width: fit-content;

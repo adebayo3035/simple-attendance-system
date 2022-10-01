@@ -1,9 +1,9 @@
 <?php
-session_start();
-if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
-    header("Location:admin/login.php");
-    die();
-}
+// session_start();
+// if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
+//     header("Location:admin/login.php");
+//     die();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,6 +59,10 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
                             if($emp_email == ""){
                                 echo "<script>alert('Please Fill in Your Email Address')</script>";
                             }
+                            else if($clockin_time < "09:00:0"){
+                                echo "<script>alert('It's not yet time, please clock in On or after 9:00 a.m')</script>";
+                            }
+
                             // else if($attendance_date = ""){
                             //     echo "<script>alert('Please Refresh Your Browser or Set the Computer Date')</script>";
                             // }

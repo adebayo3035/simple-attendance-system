@@ -1,4 +1,9 @@
-
+<?php
+	include('../config.php');
+	$id=$_GET['id'];
+	$query=mysqli_query($conn,"select * from `admin_tbl` where id='$id'");
+	$row=mysqli_fetch_array($query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,29 +17,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/register.css">
     <link rel="icon" type="image/x-icon" href="../resources/images/logo-colored.png">
-    <title>Admin Registration Form</title>
+    <title>Edit and Update Admin Information</title>
 </head>
 <body>
 <?php include('admin-header.php'); ?>
     <section class="container">
     
-        <header> CREATE NEW ADMIN</header>
-            <form method="post" action="create_admin.php"> 
+        <header> EDIT ADMIN DATA</header>
+            <form method="post" action="edit_admin.php?id=<?php echo $id; ?>"> 
                 <div class="input-group">
-                    <input type="email" name="admin_email" placeholder="E-mail Address" required>
+                    <input type="email" name="admin_email" placeholder="E-mail Address" required value="<?php echo $row['admin_email']; ?>">
                 </div>
                 
                 <div class="input-group">
-                    <input type="text" name="admin_username" placeholder="Enter Username" required>
+                    <input type="text" name="admin_username" placeholder="Enter Username" required value="<?php echo $row['admin_username']; ?>">
                 </div>
 
                  <div class="input-group">
-                    <input type="password" name="admin_password" id="password" placeholder="Enter Strong Password" required>
+                    <input type="password" name="admin_password" id="password" placeholder="Enter Strong Password" required value="<?php echo $row['admin_password']; ?>">
                     <i class="fa fa-eye" aria-hidden="true" id="togglePassword" class="togglePassword"></i>
                 </div>
                 
             
-                <button type="submit" name="create_admin" id="submitBtn">Register</button>
+                <button type="submit" name="update_admin" id="submitBtn">Update</button>
             </form>
 
         
@@ -44,27 +49,28 @@
 
 
 				<?php
-						include('../config.php');
-						if(isset($_POST['create_admin'])){
+                        include('../config.php');
+                        
+						if(isset($_POST['update_admin'])){
+                            $id=$_GET['id'];
                             $admin_email = mysqli_real_escape_string($conn, $_POST['admin_email']);
                             $admin_username = mysqli_real_escape_string($conn, $_POST['admin_username']);
                             $admin_password = mysqli_real_escape_string($conn, $_POST['admin_password']);
-                            $admin_password1 = ($admin_password); // this is supposed to be an encrypted password
+                            $admin_password1 = ($admin_password); //this is suppose to be an encrypted password
 
-						    $sql = "SELECT * FROM admin_tbl WHERE admin_email='$admin_email' OR admin_username='$admin_username' ";
+						    $sql = "SELECT * FROM admin_tbl WHERE id != '$id'AND (admin_email='$admin_email' OR admin_username='$admin_username')";
              		        $result = $conn->query($sql);	
              		        if ($result->num_rows == 0) {
                                 $sql1 = "SELECT emp_email FROM employee_tbl WHERE emp_email='$admin_email' ";
                                 $results = $conn->query($sql1);
                                     if ($results->num_rows > 0) {
-                                        $Insert_sql = "INSERT INTO admin_tbl (admin_email, admin_username, admin_password)
-                                        VALUES ('$admin_email','$admin_username','$admin_password1' )";
-    
-                                            if ($conn->query($Insert_sql) === TRUE) {
-                                                echo "<script>location.replace('staff_reg_success_msg.php');</script>";
-                                            } else {
-                                                echo "<script>alert('There was an Error')</script>" . $Insert_sql . "<br>" . $conn->error;
-                                            }
+                                        $Update_sql = "UPDATE admin_tbl SET admin_email = '$admin_email' , admin_username ='$admin_username', admin_password = '$admin_password1' WHERE id = '$id'";
+                                        if (mysqli_query($conn, $Update_sql)) {
+                                             echo "<script>location.replace('update_success.php');</script>";
+                                        } 
+                                        else {
+                                             echo "<script>alert('Error Clocking Employee Out') </script>" . $sql . "<br>" . mysqli_error($conn);
+                                        }
 
 			        
 			                        }
@@ -82,9 +88,7 @@
 
 
 	<!-- validation and insertion End-->
-
-    <!-- Toggle Password Visibility -->
-    <script>
+<script>
     const togglePassword = document.querySelector("#togglePassword");
         const password = document.querySelector("#password");
 

@@ -1,9 +1,9 @@
 <?php
-session_start();
-if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
-    header("Location:admin/login.php");
-    die();
-}
+// session_start();
+// if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
+//     header("Location:admin/login.php");
+//     die();
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,6 +68,9 @@ if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
             // Validate Form Inputs if it's empty or not
             if($emp_email == ""){
                 echo "<script>alert('Please Fill in Your Email Address')</script>";
+            }
+            else if($clockout_time < "17:00:0"){
+                echo "<script>alert('It's not yet time, please clock Out On or after 55:00 p.m')</script>";
             }
             else if ($clockout_reason == ""){
                 echo "<script>alert('Please Select Your Reason for Clocking Out')</script>";

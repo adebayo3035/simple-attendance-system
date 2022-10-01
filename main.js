@@ -49,5 +49,9 @@ function closeModal2(){
     window.location.replace("clockout.php");
 }
 function closeModal3(){
-    window.location.replace("index.php");
+    window.location.replace("admin-index.php");
 }
+function closeModal4(){
+    window.location.replace("attendance_record.php");
+}
+

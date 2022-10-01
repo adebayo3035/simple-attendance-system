@@ -17,6 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/attendance_record.css">
+    <link rel="icon" type="image/x-icon" href="../resources/images/logo-colored.png">
     <title> Employee Record</title>
     </head>
 <body>
@@ -42,7 +43,7 @@
     ?>
 
 <h2>Manage Employee Records</h2>
-<a href="../index.php" class="addNewEmployee"> Add New Employee </a>
+<a href="create_employee.php" class="addNewEmployee"> Add New Employee </a>
     <form action="" class="data-list" method="post">
         
         <div class="filter-container" id="filter-container">
@@ -79,8 +80,8 @@
 
     
             <td><?php echo $rows['emp_email'] ?></td>                 
-            <td><a href="edit.php?id=<?php echo $rows['emp_id']; ?>"><i class="fa fa-pencil" aria-hidden="true" color="red"></i></a></td>
-            <td><a href="delete.php?id=<?php echo $rows['emp_id']; ?>"><i class="fa fa-trash" aria-hidden="true"  color="red"></i></a></td>
+            <td><a href="edit_user.php?id=<?php echo $rows['emp_id']; ?>"><i class="fa fa-pencil" aria-hidden="true" color="red"></i></a></td>
+            <td><a href="delete_user.php?id=<?php echo $rows['emp_id']; ?>"><i class="fa fa-trash" aria-hidden="true"  color="red"></i></a></td>
         </tr>
 <?php
         }//end while

@@ -10,9 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/register.css">
-    <link rel="icon" type="image/x-icon" href="resources/images/logo-colored.png">
-    <title>User Registration Form</title>
+    <link rel="stylesheet" href="../css/register.css">
+    <link rel="icon" type="image/x-icon" href="../resources/images/logo-colored.png">
+    <title></title>
 </head>
 
 <body>
@@ -22,11 +22,11 @@
 <!-- Modal content -->
 <div class="modal-content" id="clockinModal" onclick="closeModal3()">
     <span class="close" >&times;</span>
-    <p>Staff Registration was successful..</p>
+    <p>Record Has been Updated Successfully..</p>
 </div>
 
 </div>
 <!-- eND OF mODAL bOX -->
-<script src="main.js"></script>
+<script src="../main.js"></script>
 </body>
 </html>

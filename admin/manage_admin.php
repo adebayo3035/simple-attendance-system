@@ -88,9 +88,9 @@
     
             <td><?php echo $rows['admin_email'] ?></td>
             <td><?php echo $rows['admin_username'] ?></td>
-            <td><input type="password" name="password" value="<?php echo md5($rows['admin_password']) ?>" id="password" class="password" readonly><i class="fa fa-eye" aria-hidden="true" id="togglePassword" class="togglePassword"></i></i></td>                
-            <td><a href="edit.php?id=<?php echo $rows['id']; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
-            <td><a href="delete.php?id=<?php echo $rows['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+            <td><input type="password" name="password" value="<?php echo ($rows['admin_password']) ?>" id="password" class="password" readonly><i class="fa fa-eye" aria-hidden="true" id="togglePassword" class="togglePassword"></i></i></td>                
+            <td><a href="edit_admin.php?id=<?php echo $rows['id']; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+            <td><a href="delete_admin.php?id=<?php echo $rows['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
         </tr>
 <?php
         }//end while
