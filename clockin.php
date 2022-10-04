@@ -23,13 +23,17 @@
 </head>
 
 <body>
-<?php include('header.php'); ?>
+<?php include('header.php'); 
+// get today;s Date
+$today = date("Y-m-d");
+//$time = date("h:i:s a");
+?>
     <section class="container">
         
         <header> CLOCK IN</header>
         <form method="post" action ="clockin.php">
             <div class="input-group">
-                <input type="text" name="attendance_date" id="date" readonly required="">
+                <input type="text" name="attendance_date" id="date" readonly required="" value = "<?php echo $today; ?>">
 
             </div>
             <div class="input-group">

@@ -36,7 +36,7 @@ if ($Adminresult=mysqli_query($conn,$countAdmin))
 
 //   Count Signed in User for the Day
 $today = date("Y-m-d");
-echo $today;
+//echo $today;
 $clockinCount ="SELECT * FROM attendance where attendance_date = '$today' ";
 
 if ($Clockinresult=mysqli_query($conn,$clockinCount))
@@ -44,6 +44,17 @@ if ($Clockinresult=mysqli_query($conn,$clockinCount))
   // Return the number of rows in result set
   $countClockin=mysqli_num_rows($Clockinresult);
   mysqli_free_result($Clockinresult);
+  }
+
+//   Count Signed in User for the Day
+$default_clockout_time = "0";
+$clockoutCount ="SELECT * FROM attendance where attendance_date = '$today' and clock_out_time != '$default_clockout_time'";
+
+if ($Clockoutresult=mysqli_query($conn,$clockoutCount))
+  {
+  // Return the number of rows in result set
+  $countClockout=mysqli_num_rows($Clockoutresult);
+  mysqli_free_result($Clockoutresult);
   }
 
 mysqli_close($conn);
@@ -127,12 +138,12 @@ mysqli_close($conn);
                     <p class="number"> <?php echo $Admincount ?></p>
                 </div>
                 <div class="count-1 green">
-                    <p> Signed in Users </p>
+                    <p> Signed in Users Today </p>
                     <p class="number"> <?php echo $countClockin ?></p>
                 </div>
                 <div class="count-1 purple">
-                    <p> Signed Out Users </p>
-                    <p class="number"> 2000</p>
+                    <p> Signed Out Users Today </p>
+                    <p class="number"> <?php echo $countClockout ?></p>
                 </div>
             </div>
 

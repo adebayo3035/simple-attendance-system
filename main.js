@@ -4,7 +4,7 @@ let timeNow = today.getHours() + ":" + today.getMinutes() + ":" + today.getSecon
 let dateNow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var myDate = document.getElementById('date');
 var myTime = document.getElementById('time');
-myDate.value = dateNow;
+// myDate.value = dateNow;
 myTime.value = timeNow;
 
 
