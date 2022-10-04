@@ -50,7 +50,7 @@
                             $_SESSION['userLogin'] = "Loggedin";
                             $_SESSION["login_time_stamp"] = time();
                               echo "<script>alert('Admin Logged in Successfully!');</script>";
-                              echo "<script>location.replace('admin-index.php');</script>";
+                              echo "<script>location.replace('dashboard.php');</script>";
 			             }
 						else{
 							echo "<script>alert('Invalid Login Credentials!');</script>";

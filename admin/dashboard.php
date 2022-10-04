@@ -1,3 +1,53 @@
+<?php
+session_start();
+if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
+    header("Location:admin/login.php");
+    die();
+}
+else{
+    if(time()-$_SESSION["login_time_stamp"] >12000) 
+    {
+        session_unset();
+        session_destroy();
+        header("Location:login.php");
+    }
+}
+
+include('../config.php');
+//  Count Total Number of Registered Employee
+$countUser ="SELECT * FROM employee_tbl";
+
+if ($result=mysqli_query($conn,$countUser))
+  {
+  // Return the number of rows in result set
+  $rowcount=mysqli_num_rows($result);
+  mysqli_free_result($result);
+  }
+
+//   Count Total Number of Admin
+$countAdmin ="SELECT * FROM admin_tbl";
+
+if ($Adminresult=mysqli_query($conn,$countAdmin))
+  {
+  // Return the number of rows in result set
+  $Admincount=mysqli_num_rows($Adminresult);
+  mysqli_free_result($Adminresult);
+  }
+
+//   Count Signed in User for the Day
+$today = date("Y-m-d");
+echo $today;
+$clockinCount ="SELECT * FROM attendance where attendance_date = '$today' ";
+
+if ($Clockinresult=mysqli_query($conn,$clockinCount))
+  {
+  // Return the number of rows in result set
+  $countClockin=mysqli_num_rows($Clockinresult);
+  mysqli_free_result($Clockinresult);
+  }
+
+mysqli_close($conn);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +55,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
+    <title> Plusone Technology Attendance Management System</title>
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +74,7 @@
             <div class="nav">
                 <ul>
                     <li>
-                        <a href="dashboard.html">
+                        <a href="dashboard.php">
                             <i class="fa fa-home"></i> Dashboard</a>
                     </li>
                     <li>
@@ -56,7 +106,9 @@
                     <p><span> Time :</span> <span id="current_time"></span></p>
                 </div>
                 <div class="dropdown">
-                    <button class="dropbtn">adebayoabdulrahmon@gmail.com
+                    <button class="dropbtn"><?php
+                    echo ($_SESSION["admin_email"]);
+                    ?>
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
@@ -68,15 +120,15 @@
             <div class="count">
                 <div class="count-1 red">
                     <p> Users</p>
-                    <p class="number"> 2000</p>
+                    <p class="number"> <?php echo $rowcount ?></p>
                 </div>
                 <div class="count-1 orange">
                     <p> Admin</p>
-                    <p class="number"> 2000</p>
+                    <p class="number"> <?php echo $Admincount ?></p>
                 </div>
                 <div class="count-1 green">
                     <p> Signed in Users </p>
-                    <p class="number"> 2000</p>
+                    <p class="number"> <?php echo $countClockin ?></p>
                 </div>
                 <div class="count-1 purple">
                     <p> Signed Out Users </p>

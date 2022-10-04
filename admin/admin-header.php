@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
-    header("Location:admin/login.php");
+    header("Location:login.php");
     die();
 }
 else{
@@ -33,7 +33,7 @@ else{
 
 <body>
     <nav class="navbar">
-        <a href="admin-index.php"> <img src="../resources/images/logo-white.png" alt="logo" class="nav-logo"></a>
+        <a href="dashboard.php"> <img src="../resources/images/logo-white.png" alt="logo" class="nav-logo"></a>
         <ul class="navlist">
             <li>
                 <a href="manage_users.php">Manage Users</a>
@@ -44,9 +44,6 @@ else{
             
             <li>
                 <a href="attendance_record.php">Attendance</a>
-            </li>
-            <li>
-                <a href="dashboard.html">DASHBOARD</a>
             </li>
 
             <li>

@@ -4,8 +4,8 @@ let timeNow = today.getHours() + ":" + today.getMinutes() + ":" + today.getSecon
 let dateNow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var myDate = document.getElementById('date');
 var myTime = document.getElementById('time');
-myDate.value = timeNow;
-myTime.value = dateNow;
+myDate.value = dateNow;
+myTime.value = timeNow;
 
 
 // form validation
@@ -29,16 +29,6 @@ function closeModal4(){
     window.location.replace("attendance_record.php");
 }
 
-// On Dashboard code to Display Current Date and Time
-var today = new Date();
-var todays_date = document.getElementById('todays_date');
-var current_time = document.getElementById('current_time');
-
-// get the date as a string
-todays_date.textContent = today.toDateString();
-current_time.textContent = today.toLocaleTimeString();
-console.log(todays_date);
-console.log(current_time)
 
 
 

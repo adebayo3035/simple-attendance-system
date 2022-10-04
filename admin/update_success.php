@@ -1,3 +1,18 @@
+<?php
+session_start();
+if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
+    header("Location:login.php");
+    die();
+}
+else{
+    if(time()-$_SESSION["login_time_stamp"] >12000) 
+    {
+        session_unset();
+        session_destroy();
+        header("Location:login.php");
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
