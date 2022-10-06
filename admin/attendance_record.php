@@ -1,10 +1,3 @@
-<?php
-// session_start();
-// if(empty($_SESSION['userLogin']) || $_SESSION['userLogin'] == ''){
-//     header("Location:login.php");
-//     die();
-// }
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,86 +18,127 @@
     <?php 
         include ('admin-header.php'); 
         include ('../config.php');
-        if (isset($_POST['search'])){
-            $emp_id = $_POST['filter_email'];
-            // $sql = "SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id WHERE attendance.emp_id = '".$_POST["filter_email"]."'";
+        //define total number of results you want per page  
+    $results_per_page = 10;  
+  
+    //find the total number of results stored in the database  
+    $query = "SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id ORDER BY attendance_id DESC";  
+    $result = mysqli_query($conn, $query);  
+    $number_of_result = mysqli_num_rows($result);  
+  
+    //determine the total number of pages available  
+    $number_of_page = ceil ($number_of_result / $results_per_page);  
+  
+    //determine which page number visitor is currently on  
+    if (!isset ($_GET['page']) ) {  
+        $page = 1;  
+    } else {  
+        $page = $_GET['page'];  
+    }  
+  
+    //determine the sql LIMIT starting number for the results on the displaying page  
+    $page_first_result = ($page-1) * $results_per_page;  
+  
+    //retrieve the selected results from database   
+    if(isset($_POST['search'])){
+        $emp_email = $_POST['filter_email'];
+        $sql = "SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id WHERE employee_tbl.emp_email = '$emp_email' ORDER BY attendance_id DESC";
+        $result = $conn->query($sql) or die($conn->error);
+    
+    }else{
+        $query = "SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id LIMIT " . $page_first_result . ',' . $results_per_page;  
+        $result = mysqli_query($conn, $query);  
+    }
 
-            $sql = "SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id WHERE employee_tbl.emp_email = '".$_POST["filter_email"]."'";
-
-            $result = $conn->query($sql) or die($conn->error);
-        }
-        else{
-            $sql = " SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id ORDER BY attendance_id DESC ";
-            $result = $conn->query($sql);
-
-        }
-        $conn->close();
-
+    
     ?>
+    <h2>Employee Attendance Record</h2>
 
-<h2>Employee Attendance Record</h2>
-    <form action="" class="data-list" method="post">
-        
-        <div class="filter-container" id="filter-container">
-            <label for="filter-input"> Enter Employee E-mail:</label>
-            <input type="email" name="filter_email" id="filter-input" required>
-            <button type="submit"name="search"> Search</button>
-        </div>
-    </form>
+<form action="" class="data-list" method="post">
+    
+    <div class="filter-container" id="filter-container">
+        <label for="filter-input"> Enter Employee E-mail:</label>
+        <input type="email" name="filter_email" id="filter-input" required>
+        <button type="submit"name="search" onclick="hidePagination()"> Search</button>
+    </div>
+</form>
+
+<!-- Button to Print Data -->
+<form method="post" action="attendance_print.php" target="_new" class="form-inline">
+          <div class="form-group">
+          <button type="submit" name="search"class="print_data">Print Data</button>
+          </div>
+</form>
 
 
 <div style="overflow-x:auto;">
-  <table>
-    <tr>
-      <th>Last Name</th>
-      <th>First Name</th>
-      <th>Position</th>
-      <th> Date </th>
-      <th>Clock in Time</th>
-      <th>Clock Out Time</th>
-      <th>Reason for Clocking Out</th>
-    </tr>
+<table>
+<tr>
+  <th>Last Name</th>
+  <th>First Name</th>
+  <th> E-mail</th>
+  <th>Position</th>
+  <th> Date </th>
+  <th>Clock in Time</th>
+  <th>Clock Out Time</th>
+  <th>Reason for Clocking Out</th>
+</tr>
 
 
-    <!-- PHP CODE TO FETCH DATA FROM ROWS -->
-                <!-- // LOOP TILL END OF DATA -->
-    <?php
-        while($rows=$result->fetch_assoc()){
-                
-    ?>
-        <tr>
-    
-            <td><?php echo $rows['emp_lastname'] ?></td>
-            <td><?php echo $rows['emp_firstname'] ?></td>
-            <td><?php echo $rows['emp_position'] ?></td>
-
-    
-            <td><?php echo $rows['attendance_date'] ?></td>                 
-            <td><?php echo $rows['clock_in_time'] ?></td>
-            <td><?php echo $rows['clock_out_time'] ?></td>
-            <td><?php echo $rows['clock_out_reason'] ?></td>
-        </tr>
+<!-- PHP CODE TO FETCH DATA FROM ROWS -->
+            <!-- // LOOP TILL END OF DATA -->
 <?php
-        }//end while
-    
+    while($rows=$result->fetch_assoc()){
+            
 ?>
-</table>
-</div>
-<script>
-    //check select option
-function getOption() {
-        selectElement = document.querySelector('#filter');
-        filterContainer = document.querySelector('#filter-container');
-        output = selectElement.value;
-        // console.log(output);
-        if ((selectElement.selectedIndex) > -1){
-            filterContainer.style.display ="flex";
+    <tr>
+
+        <td><?php echo $rows['emp_lastname'] ?></td>
+        <td><?php echo $rows['emp_firstname'] ?></td>
+        <td><?php echo $rows['emp_email'] ?></td>
+        <td><?php echo $rows['emp_position'] ?></td>
+
+
+        <td><?php echo $rows['attendance_date'] ?></td>                 
+        <td><?php echo $rows['clock_in_time'] ?></td>
+        <td><?php echo $rows['clock_out_time'] ?></td>
+        <td><?php echo $rows['clock_out_reason'] ?></td>
+    </tr>
+   
+<?php
+    }//end while
+?>
+ </table>
+ <!-- Pagination Section  -->
+ <section class="pagination" id="pagination">
+    <?php   
+        echo ' <div class="pagination_page"> <a href = "pagination.php?page=' . 1 . '" class="pagination_number"> First Page  </a> </div>';
+        for($page = 1; $page<= $number_of_page; $page++) {  
+            echo ' <div class="pagination_page"> <a href = "pagination.php?page=' . $page . '" class="pagination_number"> ' . $page . '  </a> </div> ';
         }
-        event.preventDefault();
-        // document.querySelector('.output').textContent = output;
-}
+        echo ' <div class="pagination_page"> <a href = "pagination.php?page=' . $number_of_page . '" class="pagination_number"> Last Page  </a> </div>';
+    ?>
+ </section>
+ <?php
+      
+     //echo '<a href = "pagination.php?page=' . 1 . '" class="pagination_number"> Previous Page  </a>';
+     //for($page = 1; $page<= $number_of_page; $page++) {  
+        //echo '<a href = "pagination.php?page=' . $page . '" class="pagination_number">' . $page . ' </a>';  
+    //}  
+    //echo '<a href = "pagination.php?page=' . $number_of_page . '" class="pagination_number">Last Page </a>';
+?>
 
+<script>
+    function hidePagination(){
+        var pagination = document.getElementById('pagination');
+        if(pagination.style.display === "flex"){
+            pagination.style.display ="none";
+            alert("You clicked me");
+        }else{
+            pagination.style.display ="flex";
+        }
+        
+    }
 </script>
-
 </body>
 </html>

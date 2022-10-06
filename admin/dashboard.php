@@ -73,6 +73,7 @@ mysqli_close($conn);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="icon" type="image/x-icon" href="../resources/images/logo-colored.png">
 
 </head>
 
@@ -101,8 +102,12 @@ mysqli_close($conn);
                             <i class="fa fa-user"></i> Admin</a>
                     </li>
                     <li>
+                        <a href="pagination.php">
+                            <i class="fa fa-group"></i> Pagination</a>
+                    </li>
+                    <li>
                         <a href="">
-                            <i class="fa fa-file" aria-hidden="true"></i>Report</a>
+                            <i class="fa fa-file" aria-hidden="true"></i>Export Data</a>
                     </li>
                 </ul>
             </div>

@@ -55,6 +55,24 @@
 
     ?>
 
+     <!-- Appointment Modal -->
+     <div id="appointmentModal" class="appointmentModal">
+                <span class="close" id="closeAppointment" title="Close Modal" onclick="closeAppointment(appointmentModal); unfreeze()">&times;</span>
+                <p> Do you want to Continue to remove User as an Admin?</p>
+                <div class="appointmentBody">
+                    <div class="appointmentContent">
+                        <div class="appointmentItem">
+                            <a href="delete_admin.php?id=<?php echo $rows['id']; ?>">Yes,Remove Admin</a>
+                        </div>
+                        <div class="appointmentItem">
+                            
+                            <a href="dashboard.php">No Leave Admin</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
 <h2>Manage Admin Records</h2>
 <a href="create_admin.php" class="addNewEmployee"> Add New Admin </a>
     <form action="" class="data-list" method="post">
@@ -88,9 +106,10 @@
     
             <td><?php echo $rows['admin_email'] ?></td>
             <td><?php echo $rows['admin_username'] ?></td>
-            <td><input type="password" name="password" value="<?php echo ($rows['admin_password']) ?>" id="password" class="password" readonly><i class="fa fa-eye" aria-hidden="true" id="togglePassword" class="togglePassword"></i></i></td>                
+            <td><input type="password" name="password" value="<?php echo ($rows['admin_password']) ?>" id="password" class="password" readonly><i class="fa fa-eye" aria-hidden="true" id="togglePassword" class="togglePassword" name="viewPassword">&nbsp;&nbsp;Show</i></i></td>                
             <td><a href="edit_admin.php?id=<?php echo $rows['id']; ?>"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
             <td><a href="delete_admin.php?id=<?php echo $rows['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+            <td> <a class="appointment" id="makeAppointment" onclick="showAppointment(appointmentModal); freeze()">Delete</a> </td>
         </tr>
 <?php
         }//end while
@@ -112,23 +131,66 @@ function getOption() {
         // document.querySelector('.output').textContent = output;
 }
 
-const togglePassword = document.querySelector("#togglePassword");
-        const password = document.querySelector("#password");
+// const togglePassword = document.querySelector("#togglePassword");
+//         const password = document.querySelector("#password");
 
-        togglePassword.addEventListener("click", function () {
-            // toggle the type attribute
-            const type = password.getAttribute("type") === "password" ? "text" : "password";
-            password.setAttribute("type", type);
+//         togglePassword.addEventListener("click", function () {
+//              toggle the type attribute
+//             const type = password.getAttribute("type") === "password" ? "text" : "password";
+//             password.setAttribute("type", type);
             
-            // toggle the icon
-            this.classList.toggle("icon-eye-close");
-        });
+//              toggle the icon
+//             this.classList.toggle("icon-eye-close");
+//         });
 
-        // prevent form submit
+//         
+
+
+        var myButton = document.getElementsByName('viewPassword');
+        var myInput = document.getElementsByName('password');
+        myButton.forEach(function(element, index){
+        element.onclick = function(){
+        'use strict';
+
+      if (myInput[index].type == 'password') {
+          myInput[index].setAttribute('type', 'text');
+          myButton[index].className = ("fa fa-eye-slash");
+          myButton[index].textContent ="  Hide"
+
+      } else {
+           myInput[index].setAttribute('type', 'password');
+            //element.firstChild.textContent = '';
+            myButton[index].className = "fa fa-eye";
+            myButton[index].textContent ="   Show"
+            //element.firstChild.classList.toggle("fa fa-eye");
+      }
+  }
+})
+
+        //prevent form submit
         const form = document.querySelector("form");
         form.addEventListener('submit', function (e) {
-            e.preventDefault();
+             e.preventDefault();
         });
+
+        // FUNCTION TO OPEN AND CLOSE  APPOINTMENT MODAL
+
+function showAppointment(x){
+    x.style.display ="flex";
+}
+function closeAppointment(modal){
+    modal.style.display ="none";
+}
+
+// HIDE SCROLL BAR WHEN MAKE APPOINTMENT MODAL IS ON
+var makeAppointment = document.getElementById("makeAppointment");
+var body = document.querySelector('body');
+function freeze(){
+    body.style.overflow ="hidden";
+}
+function unfreeze(){
+    body.style.overflow ="scroll";
+}
 
 </script>
 

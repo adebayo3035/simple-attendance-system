@@ -11,9 +11,9 @@ body{
     display: flex;
      /* border: 3px solid red;  */
     width: 98%;
-    
     margin: auto;
     margin-bottom: 10px;
+    position: sticky;
 }
 .navlist{
     display: flex;
