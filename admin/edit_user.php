@@ -71,7 +71,7 @@
                                              echo "<script>location.replace('update_success.php');</script>";
                                         } 
                                         else {
-                                             echo "<script>alert('Error Clocking Employee Out') </script>" . $sql . "<br>" . mysqli_error($conn);
+                                             echo "<script>alert('An Error Occur, Please Try Again') </script>" . $sql . "<br>" . mysqli_error($conn);
                                         }
                                 
                             }

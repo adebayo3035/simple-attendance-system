@@ -15,7 +15,7 @@
             if(mysqli_query($conn, $delete_sql)){
                 $delete_sql2 = "DELETE FROM employee_tbl WHERE emp_email='$emp_email'";
                 if(mysqli_query($conn, $delete_sql2)){
-                    echo "<script>location.replace('delete_success.php');</script>";
+                    echo "<script>location.replace('messages/delete_success.php');</script>";
                 }
                 else{
                     echo "<script>alert('Error Deleting Employee Record') </script>" . $delete_sql2. "<br>" . mysqli_error($conn);

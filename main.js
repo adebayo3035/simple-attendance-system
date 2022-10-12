@@ -23,7 +23,7 @@ function closeModal2(){
     window.location.replace("clockout.php");
 }
 function closeModal3(){
-    window.location.replace("admin-index.php");
+    window.location.replace("../dashboard.php");
 }
 function closeModal4(){
     window.location.replace("attendance_record.php");
