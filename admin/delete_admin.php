@@ -6,7 +6,7 @@
                     echo "<script>location.replace('delete_success.php');</script>";
                 }
                 else{
-                    echo "<script>alert('Error Deleting Employee Record') </script>" . $delete_sql. "<br>" . mysqli_error($conn);
+                    echo "<script>location.replace('delete_fail.php');</script>";" . $delete_sql. "<br>" . mysqli_error($conn);
                 }
 
 ?>
