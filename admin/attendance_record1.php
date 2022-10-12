@@ -21,8 +21,8 @@
         include ('../config.php');
         if (isset($_POST['search'])){
             $emp_id = $_POST['filter_email'];
+            
             //Lift employee emall to the ettendance print Page and save it in a session
-            session_start();
             $_SESSION["emp_email"] = $_POST['filter_email'];
             // $sql = "SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id WHERE attendance.emp_id = '".$_POST["filter_email"]."'";
 

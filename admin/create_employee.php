@@ -33,8 +33,17 @@
                 </div>
                 
                 <div class="input-group">
-                    <input type="text" name="position" placeholder="Your Position" required>
+                    <input type="text" name="position" placeholder="Your Position" list="emp_positions" required>
                 </div>
+                <datalist id="emp_positions">
+                <option value=" Chief Operating Officer"></option>
+                <option value=" Chief Executive Officer"></option>
+                <option value=" Chief Technical Officer"></option>
+                <option value=" Team Lead"></option>
+                <option value=" Youth Corper"></option>
+                <option value=" Intern"></option>
+                
+                </datalist>
                
 
 

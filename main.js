@@ -28,6 +28,12 @@ function closeModal3(){
 function closeModal4(){
     window.location.replace("attendance_record.php");
 }
+function closeModal5(){
+    window.location.replace("dashboard.php");
+}
+function closeModal6(){
+    window.location.replace("login.php");
+}
 
 
 

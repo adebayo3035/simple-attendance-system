@@ -95,7 +95,7 @@ else{
 
     <?php 
         include ('../config.php');
-        session_start();
+        
         // Retrive all Employee Attendance Record from Employee and Attendance Table  
         if(isset($_POST['searchEmployee'])){
             $emp_email = $_POST['emp_email'];

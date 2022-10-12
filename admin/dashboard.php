@@ -101,10 +101,10 @@ mysqli_close($conn);
                         <a href="manage_admin.php">
                             <i class="fa fa-user"></i> Admin</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="pagination.php">
                             <i class="fa fa-group"></i> Pagination</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="">
                             <i class="fa fa-file" aria-hidden="true"></i>Export Data</a>

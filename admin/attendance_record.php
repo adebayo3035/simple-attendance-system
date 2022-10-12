@@ -46,7 +46,7 @@
         $result = $conn->query($sql) or die($conn->error);
     
     }else{
-        $query = "SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id LIMIT " . $page_first_result . ',' . $results_per_page;  
+        $query = "SELECT * FROM employee_tbl INNER JOIN attendance ON employee_tbl.emp_id = attendance.emp_id ORDER BY attendance_id DESC LIMIT " . $page_first_result . ',' . $results_per_page ;  
         $result = mysqli_query($conn, $query);  
     }
 
@@ -112,11 +112,11 @@
  <!-- Pagination Section  -->
  <section class="pagination" id="pagination">
     <?php   
-        echo ' <div class="pagination_page"> <a href = "pagination.php?page=' . 1 . '" class="pagination_number"> First Page  </a> </div>';
+        echo ' <div class="pagination_page"> <a href = "attendance_record.php?page=' . 1 . '" class="pagination_number"> First Page  </a> </div>';
         for($page = 1; $page<= $number_of_page; $page++) {  
-            echo ' <div class="pagination_page"> <a href = "pagination.php?page=' . $page . '" class="pagination_number"> ' . $page . '  </a> </div> ';
+            echo ' <div class="pagination_page"> <a href = "attendance_record.php?page=' . $page . '" class="pagination_number"> ' . $page . '  </a> </div> ';
         }
-        echo ' <div class="pagination_page"> <a href = "pagination.php?page=' . $number_of_page . '" class="pagination_number"> Last Page  </a> </div>';
+        echo ' <div class="pagination_page"> <a href = attendance_record.php?page=' . $number_of_page . '" class="pagination_number"> Last Page  </a> </div>';
     ?>
  </section>
  <?php
