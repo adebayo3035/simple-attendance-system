@@ -49,11 +49,10 @@
                             $_SESSION["admin_email"] = $fetch['admin_email'];
                             $_SESSION['userLogin'] = "Loggedin";
                             $_SESSION["login_time_stamp"] = time();
-                              echo "<script>alert('Admin Logged in Successfully!');</script>";
-                              echo "<script>location.replace('dashboard.php');</script>";
+                              echo "<script>location.replace('login_success.php');</script>";
 			             }
 						else{
-							echo "<script>alert('Invalid Login Credentials!');</script>";
+							echo "<script>location.replace('login_fail.php');</script>";
 							
                         }
                         $conn->close();

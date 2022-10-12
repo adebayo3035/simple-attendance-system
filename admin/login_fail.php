@@ -21,9 +21,9 @@
     <div id="myModal" class="modal">
 
 <!-- Modal content -->
-<div class="modal-content" id="clockoutModal" onclick="closeModal6()">
-    <span class="close" >&times;</span>
-    <p>You are now Loged in Successfully..</p>
+<div class="modal-content" id="clockoutModal" >
+    <span class="close" id="close_Clockin" onclick="closeModal6()" >&times;</span>
+    <p>Incorrect Login Credentials, Check Your Username and Password..</p>
 </div>
 
 </div>

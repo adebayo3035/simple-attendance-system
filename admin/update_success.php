@@ -35,8 +35,8 @@ else{
     <div id="myModal" class="modal">
 
 <!-- Modal content -->
-<div class="modal-content" id="clockinModal" onclick="closeModal3()">
-    <span class="close" >&times;</span>
+<div class="modal-content" id="clockinModal" >
+    <span class="close" id="close_Clockin"onclick="closeModal3()" >&times;</span>
     <p>Record Has been Updated Successfully..</p>
 </div>
 
