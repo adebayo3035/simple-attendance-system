@@ -35,7 +35,7 @@ else{
     <div id="myModal" class="modal">
 
 <!-- Modal content -->
-<div class="modal-content" id="clockoutModal">
+<div class="modal-content" id="clockinModal">
     <span class="close" id="close_Clockin" onclick="closeModal3()" >&times;</span>
     <p>Record Has been Successfully Deleted..</p>
 </div>

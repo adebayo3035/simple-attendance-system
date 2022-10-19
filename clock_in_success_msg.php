@@ -22,7 +22,7 @@
 <!-- Modal content -->
 <div class="modal-content" id="clockinModal">
     <span class="close" id="close_Clockin" onclick="closeModal()"> &times;</span>
-    <p>You are Clocked In Successfully.</p>
+    <p>You have Successfully Sign In.</p>
 </div>
 
 </div>

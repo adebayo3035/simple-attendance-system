@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/register.css">
     <link rel="icon" type="image/x-icon" href="resources/images/logo-colored.png">
-    <title>User Registration Form</title>
+    <title>Staff Clockin System</title>
 </head>
 
 <body>
