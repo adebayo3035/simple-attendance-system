@@ -50,6 +50,9 @@
                             $_SESSION['userLogin'] = "Loggedin";
                             $_SESSION["login_time_stamp"] = time();
                               echo "<script>location.replace('login_success.php');</script>";
+                              echo " <noscript>
+                              Your browser does not support JavaScript!
+                           </noscript>";
 			             }
 						else{
 							echo "<script>location.replace('login_fail.php');</script>";
